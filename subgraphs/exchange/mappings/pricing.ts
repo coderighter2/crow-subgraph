@@ -3,28 +3,14 @@ import { BigDecimal, Address } from "@graphprotocol/graph-ts/index";
 import { Pair, Token, Bundle } from "../generated/schema";
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from "./utils";
 
-let WBNB_ADDRESS = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c";
-let BUSD_WBNB_PAIR = "0x58f876857a02d6762e0101bb5c46a8c1ed44dc16"; // created block 589414
-let USDT_WBNB_PAIR = "0x16b9a82891338f9ba80e2d6970fdda79d1eb0dae"; // created block 648115
+let WBNB_ADDRESS = "0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23";
+let USDC_WBNB_PAIR = "0xfC84f7b512BF2A590ED48797aA42CcC817F918a0"; // created block 589414
 
 export function getBnbPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let usdtPair = Pair.load(USDT_WBNB_PAIR); // usdt is token0
-  let busdPair = Pair.load(BUSD_WBNB_PAIR); // busd is token1
-
-  if (busdPair !== null && usdtPair !== null) {
-    let totalLiquidityBNB = busdPair.reserve0.plus(usdtPair.reserve1);
-    if (totalLiquidityBNB.notEqual(ZERO_BD)) {
-      let busdWeight = busdPair.reserve0.div(totalLiquidityBNB);
-      let usdtWeight = usdtPair.reserve1.div(totalLiquidityBNB);
-      return busdPair.token1Price.times(busdWeight).plus(usdtPair.token0Price.times(usdtWeight));
-    } else {
-      return ZERO_BD;
-    }
-  } else if (busdPair !== null) {
-    return busdPair.token1Price;
-  } else if (usdtPair !== null) {
-    return usdtPair.token0Price;
+  let usdcPair = Pair.load(USDC_WBNB_PAIR); // usdt is token0
+  if (usdcPair !== null) {
+    return usdcPair.token1Price;
   } else {
     return ZERO_BD;
   }
@@ -32,13 +18,11 @@ export function getBnbPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c", // WBNB
-  "0xe9e7cea3dedca5984780bafc599bd69add087d56", // BUSD
-  "0x55d398326f99059ff775485246999027b3197955", // USDT
-  "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d", // USDC
-  "0x23396cf899ca06c4472205fc903bdb4de249d6fc", // UST
-  "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c", // BTCB
-  "0x2170ed0880ac9a755fd29b2688956bd959f933f8", // WETH
+  "0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23", // WBNB
+  "0x66e428c3f67a68878562e79A0234c1F83c208770", // USDT
+  "0xc21223249CA28397B4B6541dfFaEcC539BfF0c59", // USDC
+  "0x062E66477Faf219F25D27dCED647BF57C3107d52", // BTCB
+  "0xe44Fd7fCb2b1581822D0c862B68222998a0c299a", // WETH
 ];
 
 // minimum liquidity for price to get tracked
