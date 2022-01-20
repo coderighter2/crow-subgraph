@@ -8,6 +8,9 @@
   "scripts": {
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
-    "deploy": "graph deploy --product hosted-service --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ crowfi/pairs subgraph.yaml"
+    "create": "graph create crowfi/pairs --node https://api.thegraph.com/deploy/",
+    "create-local": "graph create crowfi/pairs --node http://127.0.0.1:8020",
+    "deploy": "graph deploy --product hosted-service --node https://api.thegraph.com/ --ipfs https://api.thegraph.com/ipfs/ crowfi/pairs subgraph.yaml",
+    "deploy-local": "graph deploy --ipfs http://localhost:5001 --node http://127.0.0.1:8020 crowfi/pairs subgraph.yaml"
   }
 }
