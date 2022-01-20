@@ -1,6 +1,6 @@
 specVersion: 0.0.2
-description: Track Pairs and Tokens on PancakeSwap (v2) protocol
-repository: https://github.com/pancakeswap
+description: Track Pairs and Tokens on CrowFi protocol
+repository: https://github.com/CrowFi
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,9 +8,9 @@ dataSources:
     name: Factory
     network: bsc
     source:
-      address: '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73'
+      address: '0xDdcf30c1A85e5a60d85310d6b0D3952A75a00db4'
       abi: Factory
-      startBlock: 6809737
+      startBlock: 647037
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

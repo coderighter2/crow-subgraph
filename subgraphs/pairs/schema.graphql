@@ -33,7 +33,7 @@ type _Schema_
   )
 
 """
-PancakeSwap Factory
+CrowFi Factory
 """
 type Factory @entity {
   "ID (address)"
@@ -47,7 +47,7 @@ type Factory @entity {
 }
 
 """
-PancakeSwap Tokens
+CrowFi Tokens
 """
 type Token @entity {
   "ID (address)"
@@ -62,7 +62,7 @@ type Token @entity {
 }
 
 """
-PancakeSwap Pairs (Cake-LP)
+CrowFi Pairs (Crow-LP)
 """
 type Pair @entity {
   "ID (address)"

@@ -1,31 +1,31 @@
 /* eslint-disable prefer-const */
 import { PairHourData } from "../generated/schema";
 import { BigInt, BigDecimal, ethereum } from "@graphprotocol/graph-ts";
-import { Pair, Bundle, Token, PancakeFactory, PancakeDayData, PairDayData, TokenDayData } from "../generated/schema";
+import { Pair, Bundle, Token, CrowFactory, CrowDayData, PairDayData, TokenDayData } from "../generated/schema";
 import { ONE_BI, ZERO_BD, ZERO_BI, FACTORY_ADDRESS } from "./utils";
 
-export function updatePancakeDayData(event: ethereum.Event): PancakeDayData {
-  let pancake = PancakeFactory.load(FACTORY_ADDRESS);
+export function updateCrowDayData(event: ethereum.Event): CrowDayData {
+  let crow = CrowFactory.load(FACTORY_ADDRESS);
   let timestamp = event.block.timestamp.toI32();
   let dayID = timestamp / 86400;
   let dayStartTimestamp = dayID * 86400;
 
-  let pancakeDayData = PancakeDayData.load(dayID.toString());
-  if (pancakeDayData === null) {
-    pancakeDayData = new PancakeDayData(dayID.toString());
-    pancakeDayData.date = dayStartTimestamp;
-    pancakeDayData.dailyVolumeUSD = ZERO_BD;
-    pancakeDayData.dailyVolumeBNB = ZERO_BD;
-    pancakeDayData.totalVolumeUSD = ZERO_BD;
-    pancakeDayData.totalVolumeBNB = ZERO_BD;
-    pancakeDayData.dailyVolumeUntracked = ZERO_BD;
+  let crowDayData = CrowDayData.load(dayID.toString());
+  if (crowDayData === null) {
+    crowDayData = new CrowDayData(dayID.toString());
+    crowDayData.date = dayStartTimestamp;
+    crowDayData.dailyVolumeUSD = ZERO_BD;
+    crowDayData.dailyVolumeBNB = ZERO_BD;
+    crowDayData.totalVolumeUSD = ZERO_BD;
+    crowDayData.totalVolumeBNB = ZERO_BD;
+    crowDayData.dailyVolumeUntracked = ZERO_BD;
   }
-  pancakeDayData.totalLiquidityUSD = pancake.totalLiquidityUSD;
-  pancakeDayData.totalLiquidityBNB = pancake.totalLiquidityBNB;
-  pancakeDayData.totalTransactions = pancake.totalTransactions;
-  pancakeDayData.save();
+  crowDayData.totalLiquidityUSD = crow.totalLiquidityUSD;
+  crowDayData.totalLiquidityBNB = crow.totalLiquidityBNB;
+  crowDayData.totalTransactions = crow.totalTransactions;
+  crowDayData.save();
 
-  return pancakeDayData as PancakeDayData;
+  return crowDayData as CrowDayData;
 }
 
 export function updatePairDayData(event: ethereum.Event): PairDayData {
