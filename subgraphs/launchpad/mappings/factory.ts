@@ -1,5 +1,5 @@
 /* eslint-disable prefer-const */
-import { SaleFactory, Sale, Token } from "../generated/schema";
+import { Sale, Token } from "../generated/schema";
 import { NewSaleCreated } from "../generated/SaleFactory/SaleFactory";
 import { Sale as SaleContract } from "../generated/SaleFactory/Sale";
 import {
@@ -53,7 +53,7 @@ export function handleSaleCreated(event: NewSaleCreated): void {
   if (!sale.useEth) {
     let baseTokenAddress = saleConfig.baseToken
     let baseToken = Token.load(baseTokenAddress.toHex());
-    if (token === null) {
+    if (baseToken === null) {
       baseToken = new Token(baseTokenAddress.toHex());
       baseToken.name = fetchTokenName(baseTokenAddress);
       baseToken.symbol = fetchTokenSymbol(baseTokenAddress);
