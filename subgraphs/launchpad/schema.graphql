@@ -33,7 +33,7 @@ type Sale @entity {
   id: ID!
   owner: Bytes!
 
-  token: Token!
+  token: Token
   useEth: Boolean!
   baseToken: Token
 
@@ -61,7 +61,7 @@ type Sale @entity {
   weiRaised: BigInt!
 
   contributions: [Contribution!]! @derivedFrom(field: "sale")
-  whitelisted: [WhitelistedPerson]! @derivedFrom(field: "sale")
+  whitelisted: [WhitelistedPerson!]! @derivedFrom(field: "sale")
 }
 
 """

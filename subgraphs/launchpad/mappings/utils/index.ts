@@ -4,8 +4,6 @@ import { ERC20 } from "../../generated/SaleFactory/ERC20";
 import { ERC20NameBytes } from "../../generated/SaleFactory/ERC20NameBytes";
 import { ERC20SymbolBytes } from "../../generated/SaleFactory/ERC20SymbolBytes";
 import { SaleFactory as FactoryContract } from "../../generated/SaleFactory/SaleFactory";
-import { Sale as SaleContract, Sale__getConfigurationResultParamsStruct } from "../../generated/SaleFactory/Sale";
-import { Sale, Token } from "../../generated/schema"
 
 export let ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
 export let FACTORY_ADDRESS = "0xa6a6d0cc66e34606f0edfb5e00ca7c5c87be76bd";

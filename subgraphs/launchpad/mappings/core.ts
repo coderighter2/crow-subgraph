@@ -11,7 +11,6 @@ import {
   WhitelistedRemoved
 } from "../generated/SaleFactory/Sale";
 import { Contribution, Sale, WhitelistedPerson } from "../generated/schema";
-import { ADDRESS_ZERO } from "./utils";
 
 // - event: WhitelistedRemoved(indexed address)
 // handler: handleWhitelistedRemoved
