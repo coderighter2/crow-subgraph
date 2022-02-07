@@ -1,0 +1,87 @@
+# Schema
+
+"""
+SaleFactory
+"""
+type SaleFactory @entity {
+  "ID (address)"
+  id: ID!
+
+  "Total of Sales"
+  totalSales: BigInt!
+}
+
+"""
+Token
+"""
+type Token @entity {
+  id: ID!
+
+  "Name"
+  name: String!
+  "Symbol"
+  symbol: String!
+  "Decimals"
+  decimals: BigInt!
+}
+
+"""
+Sale
+"""
+type Sale @entity {
+  "ID (address)"
+  id: ID!
+  owner: Bytes!
+
+  token: Token!
+  useEth: Boolean!
+  baseToken: Token
+
+  canceled: Boolean!
+  finalized: Boolean!
+  deposited: Boolean!
+
+  openingTime: BigInt!
+  closingTime: BigInt!
+  unlockTime: BigInt!
+
+  rate: BigInt!
+  rateDecimals: BigInt!
+
+  listingRate: BigInt!
+  listingRateDecimals: BigInt!
+  liquidityPercent: BigInt!
+
+  softCap: BigInt!
+  hardCap: BigInt!
+
+  minContribution: BigInt!
+  maxContribution: BigInt!
+
+  weiRaised: BigInt!
+
+  contributions: [Contribution!]! @derivedFrom(field: "sale")
+  whitelisted: [WhitelistedPerson]! @derivedFrom(field: "sale")
+}
+
+"""
+Contribution
+"""
+type Contribution @entity {
+  id: ID!
+  sale: Sale!
+  contributor: Bytes!
+  amount: BigInt!
+  claimed: Boolean!
+  refunded: Boolean!
+}
+
+"""
+WhitelistedPerson
+"""
+type WhitelistedPerson @entity {
+  id: ID!
+  sale: Sale!
+  contributor: Bytes!
+  whitelisted: Boolean!
+}

@@ -1,0 +1,73 @@
+specVersion: 0.0.2
+description: Track launchpad sales
+repository: https://github.com/CrowFi
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: SaleFactory
+    network: mainnet
+    source:
+      address: '0xa6a6d0cc66e34606f0edfb5e00ca7c5c87be76bd'
+      abi: SaleFactory
+      startBlock: 1372823
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./mappings/factory.ts
+      entities:
+        - Sale
+        - Token
+        - Contribution
+        - WhitelistedPerson
+      abis:
+        - name: SaleFactory
+          file: ./abis/SaleFactory.json
+        - name: Sale
+          file: ./abis/Sale.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+      eventHandlers:
+        - event: NewSaleCreated(address,address,address)
+          handler: handleSaleCreated
+templates:
+  - kind: ethereum/contract
+    name: Sale
+    network: mainnet
+    source:
+      abi: Sale
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./mappings/core.ts
+      entities:
+        - Sale
+        - Token
+        - Contribution
+        - WhitelistedPerson
+      abis:
+        - name: Sale
+          file: ./abis/Sale.json
+      eventHandlers:
+        - event: TokensPurchased(indexed address,indexed address,uint256,uint256)
+          handler: handleTokensPurchased
+        - event: TokensClaimed(indexed address,uint256)
+          handler: handleTokensClaimed
+        - event: TokensDeposited(uint256)
+          handler: handleTokensDeposited
+        - event: ClaimRefunded(indexed address,uint256)
+          handler: handleClaimRefunded
+        - event: CrowdsaleFinalized()
+          handler: handleCrowdsaleFinalized
+        - event: CrowdsaleCanceled()
+          handler: handleCrowdsaleCanceled
+        - event: WhitelistedAdded(indexed address)
+          handler: handleWhitelistedAdded
+        - event: WhitelistedRemoved(indexed address)
+          handler: handleWhitelistedRemoved
