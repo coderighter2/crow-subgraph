@@ -16,7 +16,7 @@ import { ADDRESS_ZERO, retreiveSale } from "./utils";
 // - event: WhitelistedRemoved(indexed address)
 // handler: handleWhitelistedRemoved
 export function handleTokensPurchased(event: TokensPurchased): void {
-  const sale = retreiveSale(event.address, Address.fromHexString(ADDRESS_ZERO));
+  const sale = retreiveSale(event.address, Address.fromString(ADDRESS_ZERO));
   const contributionId = event.address.toHex().concat("-").concat(event.params.beneficiary.toHex());
   let contribution = Contribution.load(contributionId)
   if (contribution == null) {
@@ -51,7 +51,7 @@ export function handleClaimRefunded(event: ClaimRefunded): void {
 }
 
 export function handleTokensDeposited(event: TokensDeposited): void {
-  const sale = retreiveSale(event.address, Address.fromHexString(ADDRESS_ZERO));
+  const sale = retreiveSale(event.address, Address.fromString(ADDRESS_ZERO));
   if (sale !== null) {
     sale.deposited = true;
     sale.save();
@@ -59,7 +59,7 @@ export function handleTokensDeposited(event: TokensDeposited): void {
 }
 
 export function handleCrowdsaleFinalized(event: CrowdsaleFinalized): void {
-  const sale = retreiveSale(event.address, Address.fromHexString(ADDRESS_ZERO));
+  const sale = retreiveSale(event.address, Address.fromString(ADDRESS_ZERO));
   if (sale !== null) {
     sale.finalized = true;
     sale.save();
@@ -67,7 +67,7 @@ export function handleCrowdsaleFinalized(event: CrowdsaleFinalized): void {
 }
 
 export function handleCrowdsaleCanceled(event: CrowdsaleCanceled): void {
-  const sale = retreiveSale(event.address, Address.fromHexString(ADDRESS_ZERO));
+  const sale = retreiveSale(event.address, Address.fromString(ADDRESS_ZERO));
   if (sale !== null) {
     sale.canceled = true;
     sale.save();
@@ -75,7 +75,7 @@ export function handleCrowdsaleCanceled(event: CrowdsaleCanceled): void {
 }
 
 export function handleWhitelistedAdded(event: WhitelistedAdded): void {
-  const sale = retreiveSale(event.address, Address.fromHexString(ADDRESS_ZERO));
+  const sale = retreiveSale(event.address, Address.fromString(ADDRESS_ZERO));
   if (sale !== null) {
     const whitelistId = event.address.toHex().concat("-").concat(event.params.account.toHex());
     let whitelistedPerson = WhitelistedPerson.load(whitelistId)
@@ -90,7 +90,7 @@ export function handleWhitelistedAdded(event: WhitelistedAdded): void {
 }
 
 export function handleWhitelistedRemoved(event: WhitelistedRemoved): void {
-  const sale = retreiveSale(event.address, Address.fromHexString(ADDRESS_ZERO));
+  const sale = retreiveSale(event.address, Address.fromString(ADDRESS_ZERO));
   if (sale !== null) {
     const whitelistId = event.address.toHex().concat("-").concat(event.params.account.toHex());
     let whitelistedPerson = WhitelistedPerson.load(whitelistId)
