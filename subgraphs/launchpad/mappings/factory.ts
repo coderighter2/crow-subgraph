@@ -37,20 +37,20 @@ export function handleSaleCreated(event: NewSaleCreated): void {
   sale.owner = event.params.from;
   sale.useEth = saleConfig.baseToken.toHex() == ADDRESS_ZERO;
 
-  let tokenAddress = saleConfig.token;
-  let token = Token.load(tokenAddress.toHex());
-  if (token === null) {
-    token = new Token(tokenAddress.toHex());
-    token.name = fetchTokenName(tokenAddress);
-    token.symbol = fetchTokenSymbol(tokenAddress);
-    let decimals = fetchTokenDecimals(tokenAddress);
-    if (decimals === null) {
-      return;
-    }
-    token.save();
-  }
+  // let tokenAddress = saleConfig.token;
+  // let token = Token.load(tokenAddress.toHex());
+  // if (token === null) {
+  //   token = new Token(tokenAddress.toHex());
+  //   token.name = fetchTokenName(tokenAddress);
+  //   token.symbol = fetchTokenSymbol(tokenAddress);
+  //   let decimals = fetchTokenDecimals(tokenAddress);
+  //   if (decimals === null) {
+  //     return;
+  //   }
+  //   token.save();
+  // }
 
-  sale.token = token.id;
+  // sale.token = token.id;
   // if (!sale.useEth) {
   //   let baseTokenAddress = saleConfig.baseToken
   //   let baseToken = Token.load(baseTokenAddress.toHex());
