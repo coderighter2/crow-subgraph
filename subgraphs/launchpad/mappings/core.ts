@@ -29,6 +29,9 @@ export function handleTokensPurchased(event: TokensPurchased): void {
     contribution.amount = contribution.amount.plus(event.params.value);
   }
   contribution.save();
+
+  sale.weiRaised = sale.weiRaised.plus(event.params.value);
+  sale.save();
 }
 
 export function handleTokensClaimed(event: TokensClaimed): void {

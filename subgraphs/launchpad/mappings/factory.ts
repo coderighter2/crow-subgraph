@@ -91,6 +91,7 @@ export function handleSaleCreated(event: NewSaleCreated): void {
   sale.maxContribution = saleConfig.maxContribution;
 
   sale.weiRaised = ZERO_BI;
+  sale.whitelistEnabled = saleConfig.whitelistEnabled;
 
   sale.save()
 

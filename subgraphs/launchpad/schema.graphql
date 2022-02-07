@@ -59,6 +59,7 @@ type Sale @entity {
   maxContribution: BigInt!
 
   weiRaised: BigInt!
+  whitelistEnabled: Boolean
 
   contributions: [Contribution!]! @derivedFrom(field: "sale")
   whitelisted: [WhitelistedPerson!]! @derivedFrom(field: "sale")
