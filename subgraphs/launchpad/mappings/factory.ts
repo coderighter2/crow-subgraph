@@ -51,21 +51,21 @@ export function handleSaleCreated(event: NewSaleCreated): void {
   }
 
   sale.token = token.id;
-  if (!sale.useEth) {
-    let baseTokenAddress = saleConfig.baseToken
-    let baseToken = Token.load(baseTokenAddress.toHex());
-    if (baseToken === null) {
-      baseToken = new Token(baseTokenAddress.toHex());
-      baseToken.name = fetchTokenName(baseTokenAddress);
-      baseToken.symbol = fetchTokenSymbol(baseTokenAddress);
-      let decimals = fetchTokenDecimals(baseTokenAddress);
-      if (decimals === null) {
-        return;
-      }
-      baseToken.save();
-    }
-    sale.baseToken = baseToken.id;
-  }
+  // if (!sale.useEth) {
+  //   let baseTokenAddress = saleConfig.baseToken
+  //   let baseToken = Token.load(baseTokenAddress.toHex());
+  //   if (baseToken === null) {
+  //     baseToken = new Token(baseTokenAddress.toHex());
+  //     baseToken.name = fetchTokenName(baseTokenAddress);
+  //     baseToken.symbol = fetchTokenSymbol(baseTokenAddress);
+  //     let decimals = fetchTokenDecimals(baseTokenAddress);
+  //     if (decimals === null) {
+  //       return;
+  //     }
+  //     baseToken.save();
+  //   }
+  //   sale.baseToken = baseToken.id;
+  // }
 
   sale.canceled = false;
   sale.finalized = false;
