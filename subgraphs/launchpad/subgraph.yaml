@@ -8,7 +8,7 @@ dataSources:
     name: SaleFactory
     network: mainnet
     source:
-      address: '0xa6a6d0cc66e34606f0edfb5e00ca7c5c87be76bd'
+      address: '0x952B2a68C48dd2ca6763bc3de441b0fADfFE6d87'
       abi: SaleFactory
       startBlock: 1372823
     mapping:
