@@ -8,7 +8,7 @@ dataSources:
     name: SaleFactory
     network: mainnet
     source:
-      address: '0x952B2a68C48dd2ca6763bc3de441b0fADfFE6d87'
+      address: '0x1BAf386a4305f2Cb4aFF27456efCcbC21fcc6c38'
       abi: SaleFactory
       startBlock: 1372823
     mapping:
@@ -35,6 +35,8 @@ dataSources:
       eventHandlers:
         - event: NewSaleCreated(address,address,address)
           handler: handleSaleCreated
+        - event: NewSaleMigrated(address,address)
+          handler: handleSaleMigrated
 templates:
   - kind: ethereum/contract
     name: Sale
