@@ -7,6 +7,7 @@ import { SaleFactory as FactoryContract } from "../../generated/SaleFactory/Sale
 
 export let ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
 export let FACTORY_ADDRESS = "0x1baf386a4305f2cb4aff27456efccbc21fcc6c38";
+export let FACTORY_ADDRESS_OLD = "0x952b2a68c48dd2ca6763bc3de441b0fadffe6d87";
 export let ZERO_BI = BigInt.fromI32(0);
 export let ONE_BI = BigInt.fromI32(1);
 export let ZERO_BD = BigDecimal.fromString("0");

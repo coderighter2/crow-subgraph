@@ -12,6 +12,7 @@ import {
   fetchTokenName,
   fetchTokenDecimals,
   ADDRESS_ZERO,
+  FACTORY_ADDRESS_OLD,
 } from "./utils";
 import { Address } from "@graphprotocol/graph-ts";
 
@@ -111,7 +112,8 @@ export function handleSaleMigrated(event: NewSaleMigrated): void {
     return;
   }
 
-  if (!factoryResult.value.equals(Address.fromString(FACTORY_ADDRESS))) {
+  if (!factoryResult.value.equals(Address.fromString(FACTORY_ADDRESS)) &&
+  !factoryResult.value.equals(Address.fromString(FACTORY_ADDRESS_OLD))) {
     return;
   }
 
