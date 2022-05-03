@@ -1,0 +1,25 @@
+specVersion: 0.0.2
+description: CrowFi
+repository: https://github.com/CrowFi
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Factory
+    network: mainnet
+    source:
+      address: '0xddcf30c1a85e5a60d85310d6b0d3952a75a00db4'
+      abi: Factory
+      startBlock: 147036
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./mappings/index.ts
+      entities:
+        - Block
+      abis:
+        - name: Factory
+          file: ./abis/Factory.json
+      blockHandlers:
+        - handler: handleBlock
